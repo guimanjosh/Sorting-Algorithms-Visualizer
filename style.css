@@ -1,0 +1,21 @@
+body{
+    background-color: white;
+}
+h1{
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+label{
+    padding-right: 1rem;
+}
+
+#joshsCanvas{
+    width: 800px;
+    height:400px;
+}
+
+.top{
+    padding-top: 1rem;
+}
+
