@@ -55,7 +55,7 @@ function delay (ms) {
 async function sorted()
 {
     for(let i = 0; i < array.length; i++){
-        changeColor("#AAFF00", interval*i, array[i]);
+        changeColor("#02f727", interval*i, array[i]);
         await delay(1000/array.length);
     }
 
@@ -64,27 +64,55 @@ async function sorted()
     }    
 }
 
-sorted();
+//sorted();
 
 
 //Sorting Algorithms
 
-selectionSort()
+async function selectionSort()
 {
     for(let i = 0; i < array.length; i++)
     {
         let minIndex = i;
+        await delay(1000);
+        changeColor("orange", interval*i, array[i]);
         for(let j = i + 1; j < array.length; j++)
         {
+            await delay(1000);
+            changeColor("yellow", interval*j, array[j]);
             if (array[j] < array[minIndex])
             {
+                //Color the updated min
+                await delay(1000);
+                changeColor("#658CBB", minIndex * interval, array[minIndex]);
+                changeColor("#orange", j * interval, array[j]);
                 minIndex = j;
+            }
+
+            else
+            {
+                //Change back to original color
+                changeColor("#658CBB", interval * j , array[j]);
             }
         }
         //Swap
+        await delay(1000);
+        changeColor("red", interval * i, array[i]);
+        changeColor("red", interval * minIndex, array[minIndex]);
+        await delay(1000);
+        ctx.clearRect(interval * i, canvas.height, interval, array[i]);
+        ctx.clearRect(interval * minIndex, canvas.height, interval, array[minIndex]);
         let temp = array[i];
         array[i] = array[minIndex];
         array[minIndex] = temp;
+        changeColor("green", minIndex * interval,array[minIndex]);
+        changeColor("green",i * interval,array[i]);
+
+        await delay(1000);
+        if(i != minIndex)
+        {
+            changeColor("#658CBB", i * interval, array[i]);
+        }
     }
 }
 
