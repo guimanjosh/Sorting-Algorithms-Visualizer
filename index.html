@@ -17,19 +17,20 @@
             <input type="range" min="1" max="21" value="11" step="1" oninput="generateArray()" id="ScrollBar">
         </div>
         <div class="top">
-            <input type="radio" id="SelectionSort" name="SortAlgo" value="SelectionSort" checked>
-            <label for="SelectionSort">Selection Sort</label>
-            <input type="radio" id="BubbleSort" name="SortAlgo" value="BubbleSort">
-            <label for="BubbleSort">Bubble Sort</label>
-            <input type="radio" id="InsertionSort" name="SortAlgo" value="InsertionSort">
-            <label for="InsertionSort">Insertion Sort</label>
-            <input type="radio" id="QuickSort" name="SortAlgo" value="QuickSort">
-            <label for="QuickSort">Quick Sort</label>
-
+            <form id="userForm">
+                <input type="radio" id="SelectionSort" name="SortAlgo" value="SelectionSort" checked>
+                <label for="SelectionSort">Selection Sort</label>
+                <input type="radio" id="BubbleSort" name="SortAlgo" value="BubbleSort">
+                <label for="BubbleSort">Bubble Sort</label>
+                <input type="radio" id="InsertionSort" name="SortAlgo" value="InsertionSort">
+                <label for="InsertionSort">Insertion Sort</label>
+                <input type="radio" id="QuickSort" name="SortAlgo" value="QuickSort">
+                <label for="QuickSort">Quick Sort</label>
+            </form>
         </div>
         <div class="top">
             <button type="button" class="btn btn-warning" onclick="generateArray()">Create New Array</button>
-            <button type="button" class="btn btn-success" onclick="selectionSort()">Sort</button>
+            <button type="button" class="btn btn-success" onclick="sort()">Sort</button>
         </div>
     </div>
 
