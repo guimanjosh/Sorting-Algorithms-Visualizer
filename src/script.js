@@ -6,7 +6,7 @@ console.log(canvas.height);
 let ctx = canvas.getContext("2d");
 ctx.fillStyle = "#658CBB";
 let rangeInput = document.getElementById('ScrollBar').value;
-let time = 8000;
+let TIME = 1000;
 
 let array = [];
 for(let i = 0; i < rangeInput * 4; i++)
@@ -52,6 +52,7 @@ function delay (ms) {
     return new Promise((resolve,reject) => setTimeout(resolve,ms));
 }
 
+
 async function sorted()
 {
     for(let i = 0; i < array.length; i++){
@@ -74,16 +75,16 @@ async function selectionSort()
     for(let i = 0; i < array.length; i++)
     {
         let minIndex = i;
-        await delay(1000);
+        await delay(1000/array.length);
         changeColor("orange", interval*i, array[i]);
         for(let j = i + 1; j < array.length; j++)
         {
-            await delay(1000);
+            //await delay(1000);
             changeColor("yellow", interval*j, array[j]);
-            if (array[j] < array[minIndex])
+            
+            if (Math.abs(array[j]) < Math.abs(array[minIndex]))
             {
                 //Color the updated min
-                await delay(1000);
                 changeColor("#658CBB", minIndex * interval, array[minIndex]);
                 changeColor("#orange", j * interval, array[j]);
                 minIndex = j;
@@ -96,10 +97,10 @@ async function selectionSort()
             }
         }
         //Swap
-        await delay(1000);
+        await delay(1000/array.length);
         changeColor("red", interval * i, array[i]);
         changeColor("red", interval * minIndex, array[minIndex]);
-        await delay(1000);
+        await delay(1000/array.length);
         ctx.clearRect(interval * i, canvas.height, interval, array[i]);
         ctx.clearRect(interval * minIndex, canvas.height, interval, array[minIndex]);
         let temp = array[i];
@@ -108,11 +109,11 @@ async function selectionSort()
         changeColor("green", minIndex * interval,array[minIndex]);
         changeColor("green",i * interval,array[i]);
 
-        await delay(1000);
-        if(i != minIndex)
-        {
-            changeColor("#658CBB", i * interval, array[i]);
-        }
+        await delay(1000/array.length);
+        changeColor("#658CBB", minIndex * interval, array[minIndex]);
+        changeColor("#658CBB", i * interval, array[i]);
+        
     }
+    sorted();
 }
 
