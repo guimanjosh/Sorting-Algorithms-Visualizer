@@ -1,9 +1,21 @@
 body{
-    background-color: white;
+    background-image: url("src/images/outerspace.jpeg");
+    background-repeat: repeat;
 }
 h1{
     padding-top: 1rem;
     padding-bottom: 2rem;
+    color: white;
+    font-family: goth;
+}
+
+p
+{
+    color:white
+}
+
+label{
+    color: white
 }
 
 label{
