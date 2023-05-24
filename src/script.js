@@ -76,7 +76,7 @@ async function selectionSort()
     {
         let minIndex = i;
         await delay(1000/array.length);
-        changeColor("orange", interval*i, array[i]);
+        //changeColor("orange", interval*i, array[i]);
         for(let j = i + 1; j < array.length; j++)
         {
             //await delay(1000);
@@ -86,7 +86,7 @@ async function selectionSort()
             {
                 //Color the updated min
                 changeColor("#658CBB", minIndex * interval, array[minIndex]);
-                changeColor("#orange", j * interval, array[j]);
+                //changeColor("#orange", j * interval, array[j]);
                 minIndex = j;
             }
 
@@ -111,7 +111,7 @@ async function selectionSort()
 
         await delay(1000/array.length);
         changeColor("#658CBB", minIndex * interval, array[minIndex]);
-        changeColor("#658CBB", i * interval, array[i]);
+        changeColor("blue", i * interval, array[i]);
         
     }
     sorted();
@@ -140,6 +140,7 @@ async function bubbleSort()
                 changeColor("#658CBB", (j+1) * interval, array[j+1]);
             }
         }
+        changeColor("blue",((array.length-1)-i) * interval, array[(array.length-1)-i])
     }
     sorted();
 }
