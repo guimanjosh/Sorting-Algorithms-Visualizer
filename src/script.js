@@ -124,16 +124,16 @@ async function bubbleSort()
             if(Math.abs(array[j]) > Math.abs(array[j + 1]))
             {
                 await delay(1000/array.length);
-                changeColor("red",j * interval, array[j]);
-                changeColor("red", (j+1) * interval, array[j+1]);
+                changeColor("yellow",j * interval, array[j]);
+                changeColor("yellow", (j+1) * interval, array[j+1]);
                 await delay(1000/array.length);
                 ctx.clearRect(j * interval, canvas.height, interval, array[j]);
                 ctx.clearRect((j + 1) * interval, canvas.height, interval, array[j+1]);
                 let temp = array[j];
                 array[j] = array[j+1];
                 array[j+1] = temp;
-                changeColor("green",j * interval, array[j]);
-                changeColor("green", (j+1)*interval,array[j+1]);
+                changeColor("purple",j * interval, array[j]);
+                changeColor("purple", (j+1)*interval,array[j+1]);
                 await delay(1000/array.length);
 
                 changeColor("#658CBB", j * interval, array[j]);
@@ -142,4 +142,17 @@ async function bubbleSort()
         }
     }
     sorted();
+}
+
+function sort()
+{
+    let choice = document.querySelector('input[name="SortAlgo"]:checked').value;
+    if(choice == "SelectionSort")
+    {
+        selectionSort();
+    }
+    else if(choice == "BubbleSort")
+    {
+        bubbleSort();
+    }
 }
