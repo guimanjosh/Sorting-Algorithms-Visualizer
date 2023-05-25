@@ -145,6 +145,32 @@ async function bubbleSort()
     sorted();
 }
 
+async function insertionSort()
+{
+    for(let i = 1; i < array.length; i++)
+    {
+        let curr = array[i];
+        changeColor("orange", i*interval, array[i]);
+        j = i - 1;
+        while(j >= 0 && Math.abs(array[j]) > Math.abs(curr))
+        {
+            await delay(1000/array.length);
+            let temp = array[j];
+            ctx.clearRect(j*interval, canvas.height, interval, array[j]);
+            ctx.clearRect((j+1)*interval, canvas.height, interval, array[j+1]);
+            array[j] = array[j+1];
+            array[j+1] = temp;
+            changeColor("blue", (j+1) * interval, array[j+1]);
+            changeColor("orange", j * interval, array[j]);
+            await delay(1000/array.length);
+            j = j - 1;
+        }
+        await(1000/array.length);
+        changeColor("blue",(j+1)*interval, array[j+1])
+    }
+    sorted();
+}
+
 function sort()
 {
     let choice = document.querySelector('input[name="SortAlgo"]:checked').value;
@@ -152,8 +178,14 @@ function sort()
     {
         selectionSort();
     }
+    
     else if(choice == "BubbleSort")
     {
         bubbleSort();
+    }
+
+    else if(choice == "InsertionSort")
+    {
+        insertionSort();
     }
 }
