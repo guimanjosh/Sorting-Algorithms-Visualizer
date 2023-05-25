@@ -165,7 +165,9 @@ async function insertionSort()
             await delay(1000/array.length);
             j = j - 1;
         }
-        await(1000/array.length);
+        //await delay(1000/array.length);
+        //changeColor("#white", (j+1)*interval, array[j+1])
+        await delay(1000/array.length);
         changeColor("blue",(j+1)*interval, array[j+1])
     }
     sorted();
