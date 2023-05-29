@@ -1,14 +1,16 @@
-
+import bubbleSort from "./algorithms/bubbleSort.js"
+import selectionSort from "./algorithms/selectionSort.js"
+import insertionSort from "./algorithms/insertionSort.js"
 //Initial Setup
-let canvas = document.getElementById("joshsCanvas");
-console.log(canvas.width);
-console.log(canvas.height);
-let ctx = canvas.getContext("2d");
+export let canvas = document.getElementById("joshsCanvas");
+export let ctx = canvas.getContext("2d");
 ctx.fillStyle = "#658CBB";
-let rangeInput = document.getElementById('ScrollBar').value;
-let TIME = 1000;
+export let rangeInput = document.getElementById('ScrollBar').value;
+export let time = 1000;
+export let xCoord = 0;
+export let interval = 0;
 
-let array = [];
+export let array = [];
 for(let i = 0; i < rangeInput * 4; i++)
 {
     array.push(Math.floor(Math.random()*-(canvas.height-1)) - 1);
@@ -42,18 +44,18 @@ function generateArray()
 generateArray();
 
 //Helper Methods to update the board
-function changeColor(color, x, h)
+export function changeColor(color, x, h)
 {
     ctx.fillStyle = color;
     ctx.fillRect(x, canvas.height, interval, h);
 }
 
-function delay (ms) {
+export function delay (ms) {
     return new Promise((resolve,reject) => setTimeout(resolve,ms));
 }
 
 
-async function sorted()
+export async function sorted()
 {
     for(let i = 0; i < array.length; i++){
         changeColor("#02f727", interval*i, array[i]);
@@ -65,115 +67,9 @@ async function sorted()
     }    
 }
 
-//sorted();
 
 
-//Sorting Algorithms
-
-async function selectionSort()
-{
-    for(let i = 0; i < array.length; i++)
-    {
-        let minIndex = i;
-        await delay(1000/array.length);
-        //changeColor("orange", interval*i, array[i]);
-        for(let j = i + 1; j < array.length; j++)
-        {
-            //await delay(1000);
-            changeColor("yellow", interval*j, array[j]);
-            
-            if (Math.abs(array[j]) < Math.abs(array[minIndex]))
-            {
-                //Color the updated min
-                changeColor("#658CBB", minIndex * interval, array[minIndex]);
-                //changeColor("#orange", j * interval, array[j]);
-                minIndex = j;
-            }
-
-            else
-            {
-                //Change back to original color
-                changeColor("#658CBB", interval * j , array[j]);
-            }
-        }
-        //Swap
-        await delay(1000/array.length);
-        changeColor("red", interval * i, array[i]);
-        changeColor("red", interval * minIndex, array[minIndex]);
-        await delay(1000/array.length);
-        ctx.clearRect(interval * i, canvas.height, interval, array[i]);
-        ctx.clearRect(interval * minIndex, canvas.height, interval, array[minIndex]);
-        let temp = array[i];
-        array[i] = array[minIndex];
-        array[minIndex] = temp;
-        changeColor("green", minIndex * interval,array[minIndex]);
-        changeColor("green",i * interval,array[i]);
-
-        await delay(1000/array.length);
-        changeColor("#658CBB", minIndex * interval, array[minIndex]);
-        changeColor("blue", i * interval, array[i]);
-        
-    }
-    sorted();
-}
-
-async function bubbleSort()
-{
-    for(let i = 0; i < array.length - 1; i++){
-        for(let j = 0; j < array.length - i - 1; j++){
-            if(Math.abs(array[j]) > Math.abs(array[j + 1]))
-            {
-                await delay(1000/array.length);
-                changeColor("yellow",j * interval, array[j]);
-                changeColor("yellow", (j+1) * interval, array[j+1]);
-                await delay(1000/array.length);
-                ctx.clearRect(j * interval, canvas.height, interval, array[j]);
-                ctx.clearRect((j + 1) * interval, canvas.height, interval, array[j+1]);
-                let temp = array[j];
-                array[j] = array[j+1];
-                array[j+1] = temp;
-                changeColor("purple",j * interval, array[j]);
-                changeColor("purple", (j+1)*interval,array[j+1]);
-                await delay(1000/array.length);
-
-                changeColor("#658CBB", j * interval, array[j]);
-                changeColor("#658CBB", (j+1) * interval, array[j+1]);
-            }
-        }
-        changeColor("blue",((array.length-1)-i) * interval, array[(array.length-1)-i])
-    }
-    sorted();
-}
-
-async function insertionSort()
-{
-    for(let i = 1; i < array.length; i++)
-    {
-        let curr = array[i];
-        changeColor("orange", i*interval, array[i]);
-        j = i - 1;
-        while(j >= 0 && Math.abs(array[j]) > Math.abs(curr))
-        {
-            await delay(1000/array.length);
-            let temp = array[j];
-            ctx.clearRect(j*interval, canvas.height, interval, array[j]);
-            ctx.clearRect((j+1)*interval, canvas.height, interval, array[j+1]);
-            array[j] = array[j+1];
-            array[j+1] = temp;
-            changeColor("blue", (j+1) * interval, array[j+1]);
-            changeColor("orange", j * interval, array[j]);
-            await delay(1000/array.length);
-            j = j - 1;
-        }
-        //await delay(1000/array.length);
-        //changeColor("#white", (j+1)*interval, array[j+1])
-        await delay(1000/array.length);
-        changeColor("blue",(j+1)*interval, array[j+1])
-    }
-    sorted();
-}
-
-function sort()
+async function sort()
 {
     let choice = document.querySelector('input[name="SortAlgo"]:checked').value;
     if(choice == "SelectionSort")
@@ -191,3 +87,8 @@ function sort()
         insertionSort();
     }
 }
+
+//Event listeners.
+document.getElementById("ScrollBar").addEventListener("input", generateArray);
+document.getElementById("newArray").addEventListener("click",generateArray);
+document.getElementById("sortButton").addEventListener("click",sort);
