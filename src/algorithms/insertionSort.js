@@ -5,13 +5,15 @@ import {delay} from "../script.js"
 import {changeColor} from "../script.js"
 import {sorted} from "../script.js"
 import {array} from "../script.js"
+let colors = ["red","orange","yellow","white"];
 
 export default async function insertionSort()
 {
+    changeColor("blue",0,array[0]);
     for(let i = 1; i < array.length; i++)
     {
         let curr = array[i];
-        changeColor("orange", i*interval, array[i]);
+        changeColor(colors[i%4], i*interval, array[i]);
         let j = i - 1;
         while(j >= 0 && Math.abs(array[j]) > Math.abs(curr))
         {
@@ -22,7 +24,7 @@ export default async function insertionSort()
             array[j] = array[j+1];
             array[j+1] = temp;
             changeColor("blue", (j+1) * interval, array[j+1]);
-            changeColor("orange", j * interval, array[j]);
+            changeColor(colors[j%4], j * interval, array[j]);
             await delay(1000/array.length);
             j = j - 1;
         }
