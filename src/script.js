@@ -1,6 +1,8 @@
 import bubbleSort from "./algorithms/bubbleSort.js"
 import selectionSort from "./algorithms/selectionSort.js"
 import insertionSort from "./algorithms/insertionSort.js"
+import quickSort from "./algorithms/quickSort.js";
+
 //Initial Setup
 export let canvas = document.getElementById("joshsCanvas");
 export let ctx = canvas.getContext("2d");
@@ -85,6 +87,10 @@ async function sort()
     else if(choice == "InsertionSort")
     {
         insertionSort();
+    }
+    else if(choice == "QuickSort")
+    {
+        quickSort();
     }
 }
 
