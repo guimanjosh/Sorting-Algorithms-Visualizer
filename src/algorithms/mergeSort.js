@@ -6,74 +6,38 @@ import {changeColor} from "../script.js"
 import {sorted} from "../script.js"
 import {array} from "../script.js"
 
-let colors = [];
+let colors = ['#008080', '#800020'];
 
-async function merge(leftArray, rightArray, arr)
-{
-    let leftSize = Math.floor(arr.length/2);
-    let rightSize = arr.length - leftSize;
-    let i = 0;
-    let left = 0;
-    let right = 0;
-
-    while(left < leftSize && right < rightSize)
-    {
-        if(leftArray[left] < rightArray[right])
-        {
-            arr[i] = leftArray[left];
-            i = i + 1;
-            left = left + 1;
-        }
-        else
-        {
-            arr[i] = rightArray[right];
-            i = i + 1;
-            right = right + 1;
-        }
+export default async function mergeSort(arr) {
+    if (arr.length <= 1) {
+      return arr;
     }
-
-    while(left < leftSize)
-    {
-        arr[i] = leftArray[left];
-        i = i + 1;
-        left = left + 1;
+  
+    const mid = Math.floor(arr.length / 2);
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
+  
+    return merge(mergeSort(left), mergeSort(right));
+  }
+  
+function merge(left, right) {
+    let result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+  
+    while (leftIndex < left.length && rightIndex < right.length) {
+      if (left[leftIndex] < right[rightIndex]) {
+        result.push(left[leftIndex]);
+        leftIndex++;
+      } else {
+        result.push(right[rightIndex]);
+        rightIndex++;
+      }
     }
-
-    while(right < rightSize)
-    {
-
-    }
-
-}
-
-export default async function mergeSort(arr)
-{
-    let lenArr = arr.length;
-    if(lenArr <= 1)
-    {
-        return;
-    }
-
-    let mid = Math.floor(lenArr/2);
-    let leftArray = new Array(mid);
-    let rightArray = new Array(lenArr - mid);
-
-    let i = 0;
-    let j = 0;
-    for(; i < lenArr; i++)
-    {
-        if(i < mid)
-        {
-            leftArray[i] = arr[i];
-        }
-        else
-        {
-            rightArray[j] = arr[i];
-            j = j + 1;
-        }
-    }
-
-    mergeSort(leftArray);
-    mergeSort(rightArray);
-    merge(leftArray, rightArray, arr);
-}
+  
+    // Concatenate the remaining elements
+    return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+  }
+  
+  
+  

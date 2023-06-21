@@ -5,6 +5,8 @@ import {delay} from "../script.js"
 import {changeColor} from "../script.js"
 import {sorted} from "../script.js"
 import {array} from "../script.js"
+import {enable} from "../script.js"
+
 let colors = ["red","orange","yellow","white"];
 
 export default async function insertionSort()
@@ -34,4 +36,6 @@ export default async function insertionSort()
         changeColor("blue",(j+1)*interval, array[j+1])
     }
     sorted();
+    await delay(0);
+    enable();
 }

@@ -5,6 +5,8 @@ import {delay} from "../script.js"
 import {changeColor} from "../script.js"
 import {sorted} from "../script.js"
 import {array} from "../script.js"
+import {enable} from "../script.js"
+
 
 export default async function bubbleSort()
 {
@@ -16,6 +18,7 @@ export default async function bubbleSort()
                 changeColor("yellow",j * interval, array[j]);
                 changeColor("yellow", (j+1) * interval, array[j+1]);
                 await delay(1000/array.length);
+                //bsWaitTime += 1000/array.length;
                 ctx.clearRect(j * interval, canvas.height, interval, array[j]);
                 ctx.clearRect((j + 1) * interval, canvas.height, interval, array[j+1]);
                 let temp = array[j];
@@ -24,7 +27,7 @@ export default async function bubbleSort()
                 changeColor("purple",j * interval, array[j]);
                 changeColor("purple", (j+1)*interval,array[j+1]);
                 await delay(1000/array.length);
-
+                //bsWaitTime += 1000/array.length;
                 changeColor("#658CBB", j * interval, array[j]);
                 changeColor("#658CBB", (j+1) * interval, array[j+1]);
             }
@@ -32,4 +35,6 @@ export default async function bubbleSort()
         changeColor("blue",((array.length-1)-i) * interval, array[(array.length-1)-i])
     }
     sorted();
+    await delay(0);
+    enable();
 }
