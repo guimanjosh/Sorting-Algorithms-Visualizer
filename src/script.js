@@ -69,11 +69,26 @@ export async function sorted()
     }    
 }
 
+export async function disable()
+{
+    document.getElementById("ScrollBar").disabled = true;
+    document.getElementById("newArray").disabled = true;
+    document.getElementById("sortButton").disabled = true;
+}
+
+export async function enable()
+{
+    document.getElementById("ScrollBar").disabled = false;
+    document.getElementById("newArray").disabled = false;
+    document.getElementById("sortButton").disabled = false;
+}
 
 
 async function sort()
 {
     let choice = document.querySelector('input[name="SortAlgo"]:checked').value;
+    disable();
+    
     if(choice == "SelectionSort")
     {
         selectionSort();
@@ -91,10 +106,13 @@ async function sort()
     else if(choice == "MergeSort")
     {
         mergeSort(array);
+        sorted();
     }
+    //enable();
 }
 
 //Event listeners.
 document.getElementById("ScrollBar").addEventListener("input", generateArray);
-document.getElementById("newArray").addEventListener("click",generateArray);
-document.getElementById("sortButton").addEventListener("click",sort);
+document.getElementById("newArray").addEventListener("click", generateArray);
+document.getElementById("sortButton").addEventListener("click", sort);
+//document.getElementById("sortButton").addEventListener("click", disable);
