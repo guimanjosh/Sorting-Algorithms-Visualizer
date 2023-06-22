@@ -1,7 +1,7 @@
 import bubbleSort from "./algorithms/bubbleSort.js"
 import selectionSort from "./algorithms/selectionSort.js"
 import insertionSort from "./algorithms/insertionSort.js"
-import mergeSort from "./algorithms/mergeSort.js";
+import cocktailSort from "./algorithms/cocktailSort.js";
 
 //Initial Setup
 export let canvas = document.getElementById("joshsCanvas");
@@ -103,10 +103,9 @@ async function sort()
     {
         insertionSort();
     }
-    else if(choice == "MergeSort")
+    else if(choice == "CocktailSort")
     {
-        mergeSort(array);
-        sorted();
+        cocktailSort();
     }
     //enable();
 }
@@ -115,4 +114,3 @@ async function sort()
 document.getElementById("ScrollBar").addEventListener("input", generateArray);
 document.getElementById("newArray").addEventListener("click", generateArray);
 document.getElementById("sortButton").addEventListener("click", sort);
-//document.getElementById("sortButton").addEventListener("click", disable);
