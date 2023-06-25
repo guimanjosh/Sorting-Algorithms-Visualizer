@@ -7,6 +7,8 @@ import {sorted} from "../script.js"
 import {array} from "../script.js"
 import {enable} from "../script.js"
 
+//colors = ['yellow', 'purple'];
+var colors = ['white', '#00f7ff'];
 
 export default async function bubbleSort()
 {
@@ -15,8 +17,8 @@ export default async function bubbleSort()
             if(Math.abs(array[j]) > Math.abs(array[j + 1]))
             {
                 await delay(1000/array.length);
-                changeColor("yellow",j * interval, array[j]);
-                changeColor("yellow", (j+1) * interval, array[j+1]);
+                changeColor(colors[0],j * interval, array[j]);
+                changeColor(colors[0], (j+1) * interval, array[j+1]);
                 await delay(1000/array.length);
                 //bsWaitTime += 1000/array.length;
                 ctx.clearRect(j * interval, canvas.height, interval, array[j]);
@@ -24,8 +26,8 @@ export default async function bubbleSort()
                 let temp = array[j];
                 array[j] = array[j+1];
                 array[j+1] = temp;
-                changeColor("purple",j * interval, array[j]);
-                changeColor("purple", (j+1)*interval,array[j+1]);
+                changeColor(colors[1],j * interval, array[j]);
+                changeColor(colors[1], (j+1)*interval,array[j+1]);
                 await delay(1000/array.length);
                 //bsWaitTime += 1000/array.length;
                 changeColor("#658CBB", j * interval, array[j]);
@@ -35,6 +37,6 @@ export default async function bubbleSort()
         changeColor("blue",((array.length-1)-i) * interval, array[(array.length-1)-i])
     }
     sorted();
-    await delay(0);
+    await delay(500);
     enable();
 }

@@ -78,10 +78,11 @@ export default async function cocktailSort(){
         start = start + 1;
 
     }
-    for(let i = 0; i < array.length; i++)
+    for(let i = 0; i < Math.floor(array.length/2); i++)
     {
         await delay(1000/(array.length*array.length));
         changeColor('blue', i * interval, array[i]);
+        changeColor('blue', (array.length - 1 - i) * interval, array[array.length - 1 - i]);
     }
     
     sorted();
