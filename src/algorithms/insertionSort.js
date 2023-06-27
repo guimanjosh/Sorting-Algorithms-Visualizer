@@ -41,6 +41,6 @@ export default async function insertionSort()
         changeColor("blue",(j+1)*interval, array[j+1])
     }
     sorted();
-    await delay(500);
+    await delay(1000);
     enable();
 }

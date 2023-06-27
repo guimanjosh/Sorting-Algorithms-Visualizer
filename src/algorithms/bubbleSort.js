@@ -37,6 +37,6 @@ export default async function bubbleSort()
         changeColor("blue",((array.length-1)-i) * interval, array[(array.length-1)-i])
     }
     sorted();
-    await delay(500);
+    await delay(1000);
     enable();
 }

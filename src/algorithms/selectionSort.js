@@ -53,6 +53,6 @@ export default async function selectionSort()
         
     }
     sorted();
-    await delay(0);
+    await delay(1000);
     enable();
 }

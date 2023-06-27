@@ -86,6 +86,6 @@ export default async function cocktailSort(){
     }
     
     sorted();
-    await delay(500);
+    await delay(1000);
     enable();
 }
