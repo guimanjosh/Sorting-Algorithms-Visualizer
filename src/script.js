@@ -7,6 +7,7 @@ import cocktailSort from "./algorithms/cocktailSort.js";
 export let canvas = document.getElementById("joshsCanvas");
 export let ctx = canvas.getContext("2d");
 ctx.fillStyle = "#658CBB";
+ctx.strokeStyle = "black";
 export let rangeInput = document.getElementById('ScrollBar').value;
 export let time = 1000;
 export let xCoord = 0;
@@ -36,6 +37,7 @@ function generateArray()
 
     for(let i = 0; i < array.length; i++)
     {
+        ctx.strokeRect(xCoord, canvas.height, interval, array[i]);
         ctx.fillRect(xCoord, canvas.height, interval, array[i]);
         xCoord = xCoord + interval;
     }
@@ -49,6 +51,7 @@ generateArray();
 export function changeColor(color, x, h)
 {
     ctx.fillStyle = color;
+    ctx.strokeRect(x, canvas.height, interval, h);
     ctx.fillRect(x, canvas.height, interval, h);
 }
 
