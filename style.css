@@ -1,6 +1,7 @@
 body{
-    background-image: url("src/images/outerspace.jpeg");
-    background-repeat: repeat;
+    /*background-image: url("src/images/outerspace.jpeg");
+    background-repeat: repeat;*/
+    background-color: black;
 }
 h1{
     padding-top: 1rem;
