@@ -7,6 +7,10 @@ import {sorted} from "../script.js"
 import {array} from "../script.js"
 import {enable} from "../script.js"
 
+//const oldColors = ["red", '#00f7ff', "purple","yellow"];
+const alcColors = ["#05c1ff", "yellow", "red", "#fa7000"];
+
+
 export default async function cocktailSort(){
     var n = array.length;
     var swapped = true;
@@ -16,8 +20,8 @@ export default async function cocktailSort(){
     while(swapped){
         for(let i = start; i < end; i++){
             if(Math.abs(array[i]) > Math.abs(array[i+1])){
-                changeColor('red', (i+1) * interval, array[i+1]);
-                changeColor('red', i * interval, array[i]);
+                changeColor(alcColors[0], (i+1) * interval, array[i+1]);
+                changeColor(alcColors[0], i * interval, array[i]);
                 await delay(1000/array.length);
 
                 ctx.clearRect(i*interval, canvas.height, interval, array[i]);
@@ -27,8 +31,8 @@ export default async function cocktailSort(){
                 array[i] = array[i+1];
                 array[i+1] = temp;
 
-                changeColor('#00f7ff', (i+1) * interval, array[i+1]);
-                changeColor('#00f7ff', i * interval, array[i]);
+                changeColor(alcColors[1], (i+1) * interval, array[i+1]);
+                changeColor(alcColors[1], i * interval, array[i]);
                 await delay(1000/array.length);
 
                 changeColor("#658CBB", i * interval, array[i]);
@@ -53,8 +57,8 @@ export default async function cocktailSort(){
         {
             if(Math.abs(array[i]) > Math.abs(array[i+1]))
             {
-                changeColor('purple', (i+1) * interval, array[i+1]);
-                changeColor('purple', i * interval, array[i]);
+                changeColor(alcColors[2], (i+1) * interval, array[i+1]);
+                changeColor(alcColors[2], i * interval, array[i]);
                 await delay(1000/array.length);
 
                 ctx.clearRect(i*interval, canvas.height, interval, array[i]);
@@ -64,8 +68,8 @@ export default async function cocktailSort(){
                 array[i] = array[i+1];
                 array[i+1] = temp;
 
-                changeColor('yellow', (i+1) * interval, array[i+1]);
-                changeColor('yellow', i * interval, array[i]);
+                changeColor(alcColors[3], (i+1) * interval, array[i+1]);
+                changeColor(alcColors[3], i * interval, array[i]);
                 await delay(1000/array.length);
 
                 changeColor("#658CBB", i * interval, array[i]);
